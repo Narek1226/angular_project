@@ -1,0 +1,31 @@
+.toolbar {
+    height: 60px;
+    margin: -8px;
+    display: flex;
+    align-items: center;
+    background-color: #1976d2;
+    color: white;
+    font-weight: 600;
+
+    .toolbar-links {
+        display: flex;
+        width: 80%;
+        justify-content: flex-end;
+
+        a {
+            margin: 15px;
+            text-decoration: none;
+            color: white;
+            font-size: 20px;
+
+            &.toolbar-link-active {
+                text-decoration: underline;
+            }
+        }
+    }
+  }
+
+  .toolbar img {
+    margin: 0 16px;
+  }
+
