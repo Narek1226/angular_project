@@ -1,0 +1,14 @@
+.not-found {
+    font-family: sans-serif;
+    display: flex;
+    width: 100%;
+    margin: 10%;
+    justify-content: center;
+    align-content: center;
+    font-size: 3em;
+    flex-direction: column;
+
+    .not-found404 {
+        font-size: 2em;
+    }
+}
