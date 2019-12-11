@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';
 import { HomeRoutingModule } from './home-routing.module';
+import { UserService } from 'src/app/services/user/user.service';
 
 
 
@@ -10,6 +11,9 @@ import { HomeRoutingModule } from './home-routing.module';
   imports: [
     CommonModule,
     HomeRoutingModule
+  ],
+  providers: [
+    UserService
   ]
 })
 export class HomeModule { }
