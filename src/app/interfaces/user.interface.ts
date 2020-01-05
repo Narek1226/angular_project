@@ -1,4 +1,4 @@
 export interface UserInterface {
     id: number,
-    title: string,
+    name: string,
 }

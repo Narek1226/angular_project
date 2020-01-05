@@ -10,15 +10,17 @@ export class UserService {
   constructor() { }
 
   private users: Array<UserInterface> = [
-    {
-      id: Date.now(),
-      title: 'Hero 1'
-    },
-    {
-      id: Date.now(),
-      title: 'Hero 2'
-    },
-  ]
+    { id: 11, name: 'Dr Nice' },
+    { id: 12, name: 'Narco' },
+    { id: 13, name: 'Bombasto' },
+    { id: 14, name: 'Celeritas' },
+    { id: 15, name: 'Magneta' },
+    { id: 16, name: 'RubberMan' },
+    { id: 17, name: 'Dynama' },
+    { id: 18, name: 'Dr IQ' },
+    { id: 19, name: 'Magma' },
+    { id: 20, name: 'Tornado' }
+  ];
 
   getAll(): Array<UserInterface> {
     return this.users;
@@ -28,11 +30,25 @@ export class UserService {
     return this.users.find((item) => id === item.id);
   }
 
-  createUser(user): void {
+  saveUser(user): void {
     this.users.push(user);
   }
 
+  changeUser(user): void {
+    this.users = this.users.map((item) => {
+      if (item.id === user.id) {
+        return user;
+      } else {
+        return item;
+      }
+    });
+  }
+
   deleteUser(id): void {
-    this.users.filter((item) => item.id !== id);
+    this.users = this.users.filter((item) => item.id !== id);
+  }
+
+  getTopUsers(): Array<UserInterface> {
+    return this.users.slice(0, 5);
   }
 }

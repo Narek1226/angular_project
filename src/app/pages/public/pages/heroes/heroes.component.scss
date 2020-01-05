@@ -1,0 +1,15 @@
+.users {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  margin: 20px;
+
+  .user {
+    min-width: 10%;
+    background: #5a7f8c;
+    padding: 30px;
+    margin: 15px;
+    cursor: pointer;
+    color: white;
+  }
+}

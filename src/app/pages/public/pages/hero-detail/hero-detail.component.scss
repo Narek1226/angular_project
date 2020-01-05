@@ -1,0 +1,15 @@
+.user {
+
+  .user-form-section {
+    display: flex;
+    align-items: center;
+
+    span {
+      margin: 10px;
+    }
+  }
+
+  .error {
+    color: darkred;
+  }
+}

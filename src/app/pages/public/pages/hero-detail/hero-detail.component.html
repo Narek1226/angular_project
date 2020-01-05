@@ -1,0 +1,17 @@
+<div class="user">
+  <h1>{{userName}}</h1>
+  <form [formGroup]="form" (ngSubmit)="saveUser()">
+    <div class="user-form-section">
+      <span class="user-form-section-label">Id: </span>
+      <p>{{user.id}}</p>
+    </div>
+    <div class="user-form-section">
+      <span class="user-form-section-label">Name: </span>
+      <input [value]="userName" formControlName="userName" (input)="onUserInputChange($event)" />
+    </div>
+    <div *ngIf="form.controls['userName'].hasError('required') && (form.controls['userName'].touched || submitted)" class="error">Name is equired Field</div>
+    <div class="user-form-section">
+      <button>Save</button>
+    </div>
+  </form>
+</div>

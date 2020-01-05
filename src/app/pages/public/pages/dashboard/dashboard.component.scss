@@ -1,0 +1,40 @@
+.users {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  width: 100%;
+  margin: 20px;
+
+  .user {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    padding: 2px;
+    max-width: 30%;
+    background: #efefef;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1.3em;
+    cursor: pointer;
+
+    &:hover {
+      background: #cfd9dd;
+    }
+
+    &.user-active {
+      background: #cfd9dd;
+
+      p {
+        color: #fff;
+      }
+    }
+
+    p {
+      color: #8e8e8e;
+    }
+
+    .user-number {
+      margin: 10px;
+    }
+  }
+}
