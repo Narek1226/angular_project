@@ -36,7 +36,7 @@ export class DashboardComponent implements OnInit {
   }
 
   deleteCurrentUser() {
-    if (this.currentUserId || this.currentUserId === 0) {
+    if (this.currentUserId) {
       this.userService.deleteUser(this.currentUserId);
       this.getUsers();
     } else {
@@ -45,7 +45,7 @@ export class DashboardComponent implements OnInit {
   }
 
   showCurrentUser() {
-    if (this.currentUserId || this.currentUserId === 0) {
+    if (this.currentUserId) {
       const path = `/public/detail/${this.currentUserId}`;
 
       this.router.navigate([path]);

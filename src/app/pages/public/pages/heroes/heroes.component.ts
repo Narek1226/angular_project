@@ -10,7 +10,7 @@ import {Router} from '@angular/router';
 })
 export class HeroesComponent implements OnInit {
 
-  public users: Array<UserInterface>;
+  public users: Array<UserInterface> = [];
 
   constructor(private userService: UserService,
               private router: Router) { }
@@ -20,7 +20,7 @@ export class HeroesComponent implements OnInit {
   }
 
   showUser(id) {
-    if (id || id === 0) {
+    if (id) {
       const path = `/public/detail/${id}`;
 
       this.router.navigate([path]);

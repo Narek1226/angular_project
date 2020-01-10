@@ -14,7 +14,9 @@ export class HeroDetailComponent implements OnInit {
 
   user: UserInterface;
   userName: string;
-  form: FormGroup;
+  form: FormGroup = this.fb.group({
+    userName: [this.userName, Validators.required]
+  });
   submitted: boolean;
 
   constructor(private userService: UserService,
@@ -26,34 +28,23 @@ export class HeroDetailComponent implements OnInit {
   ngOnInit(): void {
     this.getHero();
     this.userName = this.user.name;
-    this.initForm();
+    this.form.get('userName').patchValue(this.userName);
   }
 
-  initForm(): void {
-    this.form = this.fb.group({
-      userName: [this.userName, Validators.required]
-    });
-  }
-
-  onUserInputChange(evt): void {
-    this.userName = evt.target.value;
+  onUserInputChange(event: any): void {
+    this.userName = event.target.value;
   }
 
   getHero(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.user = this.userService.getUserById(id);
+    this.user = this.userService.getUserById(+this.route.snapshot.paramMap.get('id'));
   }
 
   saveUser(): void {
+    this.submitted = true;
     if (this.form.valid) {
-      this.submitted = true;
       this.user.name = this.userName;
       this.userService.changeUser(this.user);
-      this.backOnPrevious();
+      this.location.back();
     }
-  }
-
-  backOnPrevious() {
-    this.location.back();
   }
 }

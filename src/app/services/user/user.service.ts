@@ -27,15 +27,15 @@ export class UserService {
   }
 
   getUserById(id): UserInterface {
-    return this.users.find((item) => id === item.id);
+    return this.users.find((item: UserInterface) => id === item.id);
   }
 
-  saveUser(user): void {
+  saveUser(user: UserInterface): void {
     this.users.push(user);
   }
 
-  changeUser(user): void {
-    this.users = this.users.map((item) => {
+  changeUser(user: UserInterface): void {
+    this.users = this.users.map((item: UserInterface) => {
       if (item.id === user.id) {
         return user;
       } else {
@@ -45,7 +45,7 @@ export class UserService {
   }
 
   deleteUser(id): void {
-    this.users = this.users.filter((item) => item.id !== id);
+    this.users = this.users.filter((item: UserInterface) => item.id !== id);
   }
 
   getTopUsers(): Array<UserInterface> {
