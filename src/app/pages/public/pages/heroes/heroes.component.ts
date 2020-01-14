@@ -21,9 +21,7 @@ export class HeroesComponent implements OnInit {
 
   showUser(id) {
     if (id) {
-      const path = `/public/detail/${id}`;
-
-      this.router.navigate([path]);
+      this.router.navigate([`/public/detail/${id}`]);
     }
   }
 }

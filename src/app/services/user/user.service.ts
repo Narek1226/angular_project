@@ -26,7 +26,7 @@ export class UserService {
     return this.users;
   }
 
-  getUserById(id): UserInterface {
+  getUserById(id: number): UserInterface {
     return this.users.find((item: UserInterface) => id === item.id);
   }
 
@@ -44,7 +44,7 @@ export class UserService {
     });
   }
 
-  deleteUser(id): void {
+  deleteUser(id: number): void {
     this.users = this.users.filter((item: UserInterface) => item.id !== id);
   }
 

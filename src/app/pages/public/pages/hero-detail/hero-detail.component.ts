@@ -12,7 +12,7 @@ import { Location } from '@angular/common';
 })
 export class HeroDetailComponent implements OnInit {
 
-  user: UserInterface;
+  user: UserInterface = {} as UserInterface;
   userName: string;
   form: FormGroup = this.fb.group({
     userName: [this.userName, Validators.required]
