@@ -1,1 +1,17 @@
-<p>dashboard works!</p>
+<app-heroes-header></app-heroes-header>
+<div class="users">
+  <div
+    class="user"
+    *ngFor="let user of users"
+    (click)="selectUser(user.id)"
+    [ngClass]="user.id === currentUserId ? 'user-active' : ''"
+  >
+    <span class="user-number">{{user.id}}</span>
+    <p>{{user.name}}</p>
+  </div>
+</div>
+<div class="my-hero">
+  <h2>{{myHeroTitle}}</h2>
+</div>
+<button (click)="showCurrentUser()">View Details</button>
+<button (click)="deleteCurrentUser()">Delete User</button>

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { UserInterface } from 'src/app/interfaces/user.interface';
+import { UserService  } from 'src/app/services/user/user.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-heroes',
@@ -7,9 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeroesComponent implements OnInit {
 
-  constructor() { }
+  public users: Array<UserInterface> = [];
+
+  constructor(private userService: UserService,
+              private router: Router) { }
 
   ngOnInit() {
+    this.users = this.userService.getTopUsers();
   }
 
+  showUser(id) {
+    if (id) {
+      this.router.navigate([`/public/detail/${id}`]);
+    }
+  }
 }
