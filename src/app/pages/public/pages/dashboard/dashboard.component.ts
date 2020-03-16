@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {UserInterface} from '../../../../interfaces/user.interface';
-import {UserService} from '../../../../services/user/user.service';
-import {Router} from '@angular/router';
+import { UserInterface } from '../../../../interfaces/user.interface';
+import { UserService } from '../../../../services/user/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,14 +15,17 @@ export class DashboardComponent implements OnInit {
   myHeroTitle: string;
 
   constructor(private userService: UserService,
-              private router: Router) { }
+              private router: Router) {}
 
   ngOnInit() {
     this.getUsers();
   }
 
   getUsers() {
-    this.users = this.userService.getAll();
+    this.userService.getAll()
+      .subscribe((res: Array<UserInterface>) => {
+       this.users = res;
+      });
   }
 
   selectUser(id: number) {
@@ -31,8 +34,9 @@ export class DashboardComponent implements OnInit {
   }
 
   changeMyHeroTitle() {
-    const userName = this.userService.getUserById(this.currentUserId).name;
-    this.myHeroTitle = `My Hero is ${userName}`;
+    this.userService.getUserById(this.currentUserId).subscribe((user) => {
+      this.myHeroTitle = `My Hero is ${user.title}`;
+    });
   }
 
   deleteCurrentUser() {
@@ -46,9 +50,7 @@ export class DashboardComponent implements OnInit {
 
   showCurrentUser() {
     if (this.currentUserId) {
-      const path = `/public/detail/${this.currentUserId}`;
-
-      this.router.navigate([path]);
+      this.router.navigate([`/public/detail/${this.currentUserId}`]);
     } else {
       alert('Select User');
     }

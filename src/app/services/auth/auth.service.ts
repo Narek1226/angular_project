@@ -1,7 +1,8 @@
-import { User, UserManager } from 'oidc-client';
+import {User, UserManager} from 'oidc-client';
 
-import { Injectable } from '@angular/core';
-import { environment } from '../../../environments/environment';
+import {Injectable} from '@angular/core';
+import {environment} from '../../../environments/environment';
+import {from, Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -22,19 +23,20 @@ export class AuthService {
     });
   }
 
-  getUser(): Promise<User> {
-    return this.userManager.getUser();
+  getUser(): Observable<User> {
+    return from(this.userManager.getUser());
   }
 
-  login(): Promise<void> {
-    return this.userManager.signinRedirect();
+  login(): Observable<void> {
+    return from(this.userManager.signinRedirect());
   }
 
-  renewToken(): Promise<User> {
-    return this.userManager.signinSilent();
+  renewToken(): Observable<User> {
+    return from(this.userManager.signinSilent());
   }
 
-  logout(): Promise<void> {
-    return this.userManager.signoutRedirect();
+  logout(): Observable<void> {
+    localStorage.clear();
+    return from(this.userManager.signoutRedirect());
   }
 }

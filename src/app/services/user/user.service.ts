@@ -1,54 +1,36 @@
 import { Injectable } from '@angular/core';
 import { UserInterface } from 'src/app/interfaces/user.interface';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+  private API_PATH = environment.endpoints.campusAdminApi;
+  private USER_API_PATH = 'api/admin/node';
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  private users: Array<UserInterface> = [
-    { id: 11, name: 'Dr Nice' },
-    { id: 12, name: 'Narco' },
-    { id: 13, name: 'Bombasto' },
-    { id: 14, name: 'Celeritas' },
-    { id: 15, name: 'Magneta' },
-    { id: 16, name: 'RubberMan' },
-    { id: 17, name: 'Dynama' },
-    { id: 18, name: 'Dr IQ' },
-    { id: 19, name: 'Magma' },
-    { id: 20, name: 'Tornado' }
-  ];
-
-  getAll(): Array<UserInterface> {
-    return this.users;
+  getAll(): Observable<object> {
+    return this.http.get(`${this.API_PATH}/${this.USER_API_PATH}`);
   }
 
-  getUserById(id: number): UserInterface {
-    return this.users.find((item: UserInterface) => id === item.id);
+  getUserById(id: number): Observable<any> {
+    return this.http.get(`${this.API_PATH}/${this.USER_API_PATH}/${id}`);
   }
 
   saveUser(user: UserInterface): void {
-    this.users.push(user);
+    this.http.post(this.USER_API_PATH, user).subscribe(res => console.log(res));
   }
 
-  changeUser(user: UserInterface): void {
-    this.users = this.users.map((item: UserInterface) => {
-      if (item.id === user.id) {
-        return user;
-      } else {
-        return item;
-      }
-    });
+  changeUser(user: UserInterface): Observable<object> {
+    return this.http.put(`${this.API_PATH}/${this.USER_API_PATH}/${user.id}`, user);
   }
 
   deleteUser(id: number): void {
-    this.users = this.users.filter((item: UserInterface) => item.id !== id);
-  }
-
-  getTopUsers(): Array<UserInterface> {
-    return this.users.slice(0, 5);
+    this.http.delete(`${this.API_PATH}/${this.USER_API_PATH}/${id}`);
   }
 }

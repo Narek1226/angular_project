@@ -27,8 +27,6 @@ export class HeroDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.getHero();
-    this.userName = this.user.name;
-    this.form.get('userName').patchValue(this.userName);
   }
 
   onUserInputChange(event: any): void {
@@ -36,15 +34,20 @@ export class HeroDetailComponent implements OnInit {
   }
 
   getHero(): void {
-    this.user = this.userService.getUserById(+this.route.snapshot.paramMap.get('id'));
+    this.userService.getUserById(+this.route.snapshot.paramMap.get('id')).subscribe((res) => {
+      this.user = res;
+      this.userName = this.user.title;
+      this.form.get('userName').patchValue(this.userName);
+    });
   }
 
   saveUser(): void {
     this.submitted = true;
     if (this.form.valid) {
-      this.user.name = this.userName;
-      this.userService.changeUser(this.user);
-      this.location.back();
+      this.user.title = this.userName;
+      this.userService.changeUser(this.user).subscribe(() => {
+        this.location.back();
+      });
     }
   }
 }

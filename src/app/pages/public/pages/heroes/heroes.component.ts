@@ -16,7 +16,9 @@ export class HeroesComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
-    this.users = this.userService.getTopUsers();
+    this.userService.getAll().subscribe((res: Array<UserInterface>) => {
+      this.users = res;
+    });
   }
 
   showUser(id) {

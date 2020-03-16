@@ -9,7 +9,10 @@
       <span class="user-form-section-label">Name: </span>
       <input [value]="userName" formControlName="userName" (input)="onUserInputChange($event)" />
     </div>
-    <div *ngIf="form.get('userName').hasError('required') && (form.get('userName').touched || submitted)" class="error">Name is equired Field</div>
+    <div *ngIf="form.get('userName').hasError('required')
+         && (form.get('userName').touched || submitted)"
+         class="error"
+    >Name is required Field</div>
     <div class="user-form-section">
       <button>Save</button>
     </div>
