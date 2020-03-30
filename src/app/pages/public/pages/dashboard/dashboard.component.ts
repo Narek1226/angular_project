@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
 
-  users: Array<UserInterface>;
+  heroes: Array<UserInterface>;
   currentUserId: number;
   myHeroTitle: string;
 
@@ -24,7 +24,7 @@ export class DashboardComponent implements OnInit {
   getUsers() {
     this.userService.getAll()
       .subscribe((res: Array<UserInterface>) => {
-       this.users = res;
+       this.heroes = res;
       });
   }
 
@@ -41,8 +41,10 @@ export class DashboardComponent implements OnInit {
 
   deleteCurrentUser() {
     if (this.currentUserId) {
-      this.userService.deleteUser(this.currentUserId);
-      this.getUsers();
+      this.userService.deleteUser(this.currentUserId)
+        .subscribe(() => {
+          this.getUsers();
+        });
     } else {
       alert('Select User');
     }

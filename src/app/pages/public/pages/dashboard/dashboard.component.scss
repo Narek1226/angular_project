@@ -1,40 +1,68 @@
-.users {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  width: 100%;
-  margin: 20px;
+.dashboard {
+  padding: 20px;
 
-  .user {
+  &__cont {
     display: flex;
-    align-items: center;
-    margin: 10px;
-    padding: 2px;
-    max-width: 30%;
-    background: #efefef;
-    border-radius: 8px;
-    font-weight: 700;
-    font-size: 1.3em;
-    cursor: pointer;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: 100%;
 
-    &:hover {
-      background: #cfd9dd;
-    }
+    &__item {
+      display: flex;
+      align-items: center;
+      margin: 10px 0;
+      padding: 2px;
+      max-width: 30%;
+      background: #efefef;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1.3em;
+      cursor: pointer;
 
-    &.user-active {
-      background: #cfd9dd;
+      &:hover {
+        background: #cfd9dd;
+      }
 
-      p {
-        color: #fff;
+      &--active {
+        background: #cfd9dd;
+
+        &__title {
+          color: #fff;
+        }
+      }
+
+      &__title {
+        color: #8e8e8e;
+      }
+
+      &__number {
+        margin: 10px;
       }
     }
+  }
 
-    p {
-      color: #8e8e8e;
-    }
+  &__bottom {
+    display: flex;
+    flex-direction: column;
 
-    .user-number {
-      margin: 10px;
+    &__buttons {
+      display: flex;
+
+      button {
+        margin: 5px;
+        padding: 10px;
+        background: #efefed;
+        color: #64868e;
+        font-size: 1.5em;
+        border: none;
+        cursor: pointer;
+        font-weight: 700;
+        border-radius: 8px;
+
+        &:hover {
+          color: #10a5e2;
+        }
+      }
     }
   }
 }

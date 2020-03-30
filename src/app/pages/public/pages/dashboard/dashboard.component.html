@@ -1,17 +1,21 @@
 <app-heroes-header></app-heroes-header>
-<div class="users">
-  <div
-    class="user"
-    *ngFor="let user of users"
-    (click)="selectUser(user.id)"
-    [ngClass]="user.id === currentUserId ? 'user-active' : ''"
-  >
-    <span class="user-number">{{user.id}}</span>
-    <p>{{user.title}}</p>
+<div class="dashboard">
+  <div class="dashboard__cont">
+    <div
+      class="dashboard__cont__item"
+      *ngFor="let hero of heroes"
+      (click)="selectUser(hero.id)"
+      [ngClass]="hero.id === currentUserId ? 'dashboard__cont__item--active' : ''"
+    >
+      <span class="dashboard__cont__item__number">{{hero.id}}</span>
+      <p class="dashboard__cont__item__title">{{hero.title}}</p>
+    </div>
+  </div>
+  <div class="dashboard__bottom">
+    <h2 class="dashboard__bottom__title">{{myHeroTitle}}</h2>
+    <div class="dashboard__bottom__buttons">
+      <button (click)="showCurrentUser()">View Details</button>
+      <button (click)="deleteCurrentUser()">Delete User</button>
+    </div>
   </div>
 </div>
-<div class="my-hero">
-  <h2>{{myHeroTitle}}</h2>
-</div>
-<button (click)="showCurrentUser()">View Details</button>
-<button (click)="deleteCurrentUser()">Delete User</button>

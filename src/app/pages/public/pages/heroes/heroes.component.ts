@@ -10,14 +10,14 @@ import {Router} from '@angular/router';
 })
 export class HeroesComponent implements OnInit {
 
-  public users: Array<UserInterface> = [];
+  public heroes: Array<UserInterface> = [];
 
   constructor(private userService: UserService,
               private router: Router) { }
 
   ngOnInit() {
     this.userService.getAll().subscribe((res: Array<UserInterface>) => {
-      this.users = res;
+      this.heroes = res;
     });
   }
 
