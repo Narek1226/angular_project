@@ -1,15 +1,37 @@
-.user {
+.details {
+  font-size: 1.3em;
+  font-weight: 700;
+  .form {
+    &__title__holder, &__control__holder {
+      display: flex;
+      align-items: center;
+    }
 
-  .user-form-section {
-    display: flex;
-    align-items: center;
-
-    span {
+    &__title {
       margin: 10px;
     }
-  }
 
-  .error {
-    color: darkred;
+    &__bottom {
+      margin: 10px;
+
+      &__btn {
+        padding: 5px 15px;
+        background: #efefed;
+        color: #64868e;
+        border: none;
+        font-size: 1em;
+        cursor: pointer;
+        font-weight: 700;
+        border-radius: 8px;
+
+        &:hover {
+          color: #10a5e2;
+        }
+      }
+    }
+
+    .error {
+      color: darkred;
+    }
   }
 }

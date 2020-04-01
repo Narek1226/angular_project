@@ -13,18 +13,17 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {}
 
   onLogin() {
-    this.authService.login().catch((error: Error) => console.error(error));
+    this.authService.login();
   }
 
   onRenewToken() {
     this.authService.renewToken()
-      .then(user => {
+      .subscribe(user => {
         this.authService.identityUser = user;
-      })
-      .catch((error: Error) => console.error(error));
+      }, (error: Error) => console.error(error))
   }
 
   onLogout() {
-    this.authService.logout().catch((error: Error) => console.error(error));
+    this.authService.logout();
   }
 }

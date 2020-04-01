@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {UserInterface} from '../../../../interfaces/user.interface';
-import {UserService} from '../../../../services/user/user.service';
-import {Router} from '@angular/router';
+import { UserInterface } from '../../../../interfaces/user.interface';
+import { UserService } from '../../../../services/user/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,45 +10,49 @@ import {Router} from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
 
-  users: Array<UserInterface>;
+  heroes: Array<UserInterface>;
   currentUserId: number;
   myHeroTitle: string;
 
   constructor(private userService: UserService,
-              private router: Router) { }
+              private router: Router) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.getUsers();
   }
 
-  getUsers() {
-    this.users = this.userService.getAll();
+  getUsers(): void {
+    this.userService.getAll()
+      .subscribe((res: Array<UserInterface>) => {
+       this.heroes = res;
+      });
   }
 
-  selectUser(id: number) {
+  selectUser(id: number): void {
     this.currentUserId = id;
     this.changeMyHeroTitle();
   }
 
-  changeMyHeroTitle() {
-    const userName = this.userService.getUserById(this.currentUserId).name;
-    this.myHeroTitle = `My Hero is ${userName}`;
+  changeMyHeroTitle(): void {
+    this.userService.getUserById(this.currentUserId).subscribe((user) => {
+      this.myHeroTitle = `My Hero is ${user.title}`;
+    });
   }
 
-  deleteCurrentUser() {
+  deleteCurrentUser(): void {
     if (this.currentUserId) {
-      this.userService.deleteUser(this.currentUserId);
-      this.getUsers();
+      this.userService.deleteUser(this.currentUserId)
+        .subscribe(() => {
+          this.getUsers();
+        });
     } else {
       alert('Select User');
     }
   }
 
-  showCurrentUser() {
+  showCurrentUser(): void {
     if (this.currentUserId) {
-      const path = `/public/detail/${this.currentUserId}`;
-
-      this.router.navigate([path]);
+      this.router.navigate([`/public/detail/${this.currentUserId}`]);
     } else {
       alert('Select User');
     }

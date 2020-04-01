@@ -10,18 +10,16 @@ import { User } from 'oidc-client';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
-  public users: Array<UserInterface>;
-
   constructor(private userService: UserService, public authService: AuthService) { }
 
   ngOnInit() {
-    this.users = this.userService.getAll();
-
     this.authService.getUser()
-      .then((user: User) => {
-        console.log(user);
-      })
-      .catch((error: Error) => console.error(error));
+      .subscribe((user: User) => {
+        if (user) {
+          localStorage.setItem('session_state', user.session_state);
+          localStorage.setItem('access_token', user.access_token);
+          localStorage.setItem('refresh_token', user.refresh_token);
+        }
+        }, (error: Error) => console.error(error));
   }
 }

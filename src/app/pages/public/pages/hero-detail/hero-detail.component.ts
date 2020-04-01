@@ -12,7 +12,7 @@ import { Location } from '@angular/common';
 })
 export class HeroDetailComponent implements OnInit {
 
-  user: UserInterface = {} as UserInterface;
+  hero: UserInterface = {} as UserInterface;
   userName: string;
   form: FormGroup = this.fb.group({
     userName: [this.userName, Validators.required]
@@ -27,8 +27,6 @@ export class HeroDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.getHero();
-    this.userName = this.user.name;
-    this.form.get('userName').patchValue(this.userName);
   }
 
   onUserInputChange(event: any): void {
@@ -36,15 +34,20 @@ export class HeroDetailComponent implements OnInit {
   }
 
   getHero(): void {
-    this.user = this.userService.getUserById(+this.route.snapshot.paramMap.get('id'));
+    this.userService.getUserById(+this.route.snapshot.paramMap.get('id')).subscribe((res) => {
+      this.hero = res;
+      this.userName = this.hero.title;
+      this.form.get('userName').patchValue(this.userName);
+    });
   }
 
   saveUser(): void {
     this.submitted = true;
     if (this.form.valid) {
-      this.user.name = this.userName;
-      this.userService.changeUser(this.user);
-      this.location.back();
+      this.hero.title = this.userName;
+      this.userService.changeUser(this.hero).subscribe(() => {
+        this.location.back();
+      });
     }
   }
 }

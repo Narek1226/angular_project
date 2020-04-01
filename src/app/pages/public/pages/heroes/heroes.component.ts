@@ -10,16 +10,18 @@ import {Router} from '@angular/router';
 })
 export class HeroesComponent implements OnInit {
 
-  public users: Array<UserInterface> = [];
+  public heroes: Array<UserInterface> = [];
 
   constructor(private userService: UserService,
               private router: Router) { }
 
-  ngOnInit() {
-    this.users = this.userService.getTopUsers();
+  ngOnInit(): void {
+    this.userService.getAll().subscribe((res: Array<UserInterface>) => {
+      this.heroes = res;
+    });
   }
 
-  showUser(id) {
+  showUser(id: number): void {
     if (id) {
       this.router.navigate([`/public/detail/${id}`]);
     }

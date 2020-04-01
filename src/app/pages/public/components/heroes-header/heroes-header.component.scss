@@ -1,15 +1,14 @@
-.heroes-header {
+.header {
   display: flex;
   justify-content: center;
 
-  .heroes-header-links-wrapper {
+  &__links {
     width: 93%;
     display: flex;
 
     a {
       text-decoration: none;
       margin: 15px;
-      color: black;
       background: #efefed;
       padding: 8px;
       border-radius: 5px;
@@ -17,7 +16,7 @@
       color: #64868e;
       font-weight: 700;
 
-      &.heroes-header-link-active {
+      &--active {
         color: #10a5e2;
       }
     }
