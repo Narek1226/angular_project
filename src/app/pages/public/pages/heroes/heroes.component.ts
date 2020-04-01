@@ -15,13 +15,13 @@ export class HeroesComponent implements OnInit {
   constructor(private userService: UserService,
               private router: Router) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.userService.getAll().subscribe((res: Array<UserInterface>) => {
       this.heroes = res;
     });
   }
 
-  showUser(id) {
+  showUser(id: number): void {
     if (id) {
       this.router.navigate([`/public/detail/${id}`]);
     }

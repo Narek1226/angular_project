@@ -17,29 +17,29 @@ export class DashboardComponent implements OnInit {
   constructor(private userService: UserService,
               private router: Router) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.getUsers();
   }
 
-  getUsers() {
+  getUsers(): void {
     this.userService.getAll()
       .subscribe((res: Array<UserInterface>) => {
        this.heroes = res;
       });
   }
 
-  selectUser(id: number) {
+  selectUser(id: number): void {
     this.currentUserId = id;
     this.changeMyHeroTitle();
   }
 
-  changeMyHeroTitle() {
+  changeMyHeroTitle(): void {
     this.userService.getUserById(this.currentUserId).subscribe((user) => {
       this.myHeroTitle = `My Hero is ${user.title}`;
     });
   }
 
-  deleteCurrentUser() {
+  deleteCurrentUser(): void {
     if (this.currentUserId) {
       this.userService.deleteUser(this.currentUserId)
         .subscribe(() => {
@@ -50,7 +50,7 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  showCurrentUser() {
+  showCurrentUser(): void {
     if (this.currentUserId) {
       this.router.navigate([`/public/detail/${this.currentUserId}`]);
     } else {
