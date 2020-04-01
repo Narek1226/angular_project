@@ -15,11 +15,11 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<object> {
-    return this.http.get(`${this.API_PATH}/${this.USER_API_PATH}`);
+    return this.http.get<Observable<object>>(`${this.API_PATH}/${this.USER_API_PATH}`);
   }
 
-  getUserById(id: number): Observable<any> {
-    return this.http.get(`${this.API_PATH}/${this.USER_API_PATH}/${id}`);
+  getUserById(id: number): Observable<UserInterface> {
+    return this.http.get<UserInterface>(`${this.API_PATH}/${this.USER_API_PATH}/${id}`);
   }
 
   saveUser(user: UserInterface): void {
