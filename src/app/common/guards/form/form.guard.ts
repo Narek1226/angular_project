@@ -1,10 +1,10 @@
-import {Injectable, OnDestroy} from '@angular/core';
+import { Injectable } from '@angular/core';
 import { CanDeactivate } from '@angular/router';
-import {Observable, Observer} from 'rxjs';
+import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from '../../../components/shared/confirmation-dialog/confirmation-dialog.component';
 import { FormGroup } from '@angular/forms';
-import {finalize, map, takeWhile} from "rxjs/operators";
+import { map } from 'rxjs/operators';
 
 interface ComponentWithFormInterface {
   submitted: boolean;
