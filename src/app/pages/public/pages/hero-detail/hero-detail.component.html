@@ -1,16 +1,16 @@
 <section class="details">
-  <h1>{{userName}}</h1>
+  <h1>{{heroName}}</h1>
   <form [formGroup]="form" class="form" (ngSubmit)="saveUser()">
     <div class="form__title__holder">
       <span class="form__title">Id: </span>
       <p>{{hero.id}}</p>
     </div>
     <div class="form__control__holder">
-      <label class="form__title" for="userName">Name: </label>
-      <input id="userName" [value]="userName" formControlName="userName" (input)="onUserInputChange($event)" />
+      <label class="form__title" for="heroName">Name: </label>
+      <input id="heroName" [value]="heroName" formControlName="heroName" (input)="onUserInputChange($event)" />
     </div>
-    <div *ngIf="form.get('userName').hasError('required')
-         && (form.get('userName').touched || submitted)"
+    <div *ngIf="form.get('heroName').hasError('required')
+         && (form.get('heroName').touched || submitted)"
          class="error"
     >Name is required Field</div>
     <div class="form__bottom">

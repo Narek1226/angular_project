@@ -4,8 +4,8 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 const routes: Routes = [
   { path: 'admin', loadChildren: () => import('./pages/admin/admin.module').then(m => m.AdminModule)},
-  { path: 'public', loadChildren:() => import('./pages/public/public.module').then(m => m.PublicModule)},
-  { path: '', loadChildren:() => import('./pages/home/home.module').then(m => m.HomeModule), pathMatch: 'full'},
+  { path: 'public', loadChildren: () => import('./pages/public/public.module').then(m => m.PublicModule)},
+  { path: '', loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule), pathMatch: 'full'},
   { path: '**', component: NotFoundComponent}
 ];
 
