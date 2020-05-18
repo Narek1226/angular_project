@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserInterface } from 'src/app/interfaces/user.interface';
-import { UserService  } from 'src/app/services/user/user.service';
-import {Router} from '@angular/router';
+import { UserService  } from 'src/app/providers/services/user/user.service';
+import { Router } from '@angular/router';
+import { HeroesRoutingPath } from '../../entities/Classes/heroes-routing-path';
 
 @Component({
   selector: 'app-heroes',
@@ -23,7 +24,7 @@ export class HeroesComponent implements OnInit {
 
   showUser(id: number): void {
     if (id) {
-      this.router.navigate([`/public/detail/${id}`]);
+      this.router.navigate([HeroesRoutingPath.HERO_DETAIL_ROUT_PATH.replace('{{id}}', `${id}`)]);
     }
   }
 }

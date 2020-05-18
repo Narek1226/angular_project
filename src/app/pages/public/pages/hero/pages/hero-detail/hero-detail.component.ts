@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import { UserService } from 'src/app/services/user/user.service';
+import { UserService } from 'src/app/providers/services/user/user.service';
 import { UserInterface } from 'src/app/interfaces/user.interface';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';

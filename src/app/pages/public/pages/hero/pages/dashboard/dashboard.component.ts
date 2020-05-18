@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { UserInterface } from '../../../../interfaces/user.interface';
-import { UserService } from '../../../../services/user/user.service';
+import { UserInterface } from '../../../../../../interfaces/user.interface';
+import { UserService } from '../../../../../../providers/services/user/user.service';
 import { Router } from '@angular/router';
+import { HeroesRoutingPath } from '../../entities/Classes/heroes-routing-path';
 
 @Component({
   selector: 'app-dashboard',
@@ -52,7 +53,7 @@ export class DashboardComponent implements OnInit {
 
   showCurrentUser(): void {
     if (this.currentUserId) {
-      this.router.navigate([`/public/detail/${this.currentUserId}`]);
+      this.router.navigate([HeroesRoutingPath.HERO_DETAIL_ROUT_PATH.replace('{{id}}', `${this.currentUserId}`)]);
     } else {
       alert('Select User');
     }
