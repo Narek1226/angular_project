@@ -1,7 +1,7 @@
 import {User, UserManager} from 'oidc-client';
 
 import {Injectable} from '@angular/core';
-import {environment} from '../../../environments/environment';
+import {environment} from '../../../../environments/environment';
 import {from, Observable} from 'rxjs';
 
 @Injectable({

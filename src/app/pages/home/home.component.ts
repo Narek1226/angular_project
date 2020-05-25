@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserInterface } from 'src/app/interfaces/user.interface';
-import { UserService } from 'src/app/services/user/user.service';
-import {AuthService} from '../../services/auth/auth.service';
+import { UserService } from 'src/app/providers/services/user/user.service';
+import {AuthService} from '../../providers/services/auth/auth.service';
 import { User } from 'oidc-client';
 
 @Component({
