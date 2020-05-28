@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import { UserService } from 'src/app/providers/services/user/user.service';
-import { UserInterface } from 'src/app/interfaces/user.interface';
+import { UserInterface } from 'src/app/entities/interfaces/user.interface';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
@@ -50,13 +50,13 @@ export class HeroDetailComponent implements OnInit, OnDestroy {
   }
 
   getHero(): void {
-    this.userService.getUserById(+this.route.snapshot.paramMap.get('id')).subscribe((res) => {
-      this.hero = res;
-      this.heroName = this.hero.title;
-      this.form.get('heroName').patchValue(this.heroName);
-      this.form.markAsPristine();
-      this.initialFormValue = this.form.value;
-    });
+  this.route.data.subscribe((data: {heroDetails: UserInterface}) => {
+    this.hero = data.heroDetails;
+    this.heroName = this.hero.title;
+    this.form.get('heroName').patchValue(this.heroName);
+    this.form.markAsPristine();
+    this.initialFormValue = this.form.value;
+  });
   }
 
   saveUser(): void {
