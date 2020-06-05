@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserInterface } from 'src/app/interfaces/user.interface';
+import { UserInterface } from 'src/app/entities/interfaces/user.interface';
 import { UserService  } from 'src/app/providers/services/user/user.service';
 import { Router } from '@angular/router';
 import { HeroesRoutingPath } from '../../entities/Classes/heroes-routing-path';
