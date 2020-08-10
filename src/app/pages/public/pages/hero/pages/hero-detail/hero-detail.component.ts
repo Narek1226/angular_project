@@ -4,7 +4,7 @@ import { UserInterface } from 'src/app/entities/interfaces/user.interface';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
-import { isEqual } from 'lodash';
+import { isEqual, isEmpty } from 'lodash';
 import { takeWhile } from 'rxjs/operators';
 
 @Component({
@@ -30,7 +30,11 @@ export class HeroDetailComponent implements OnInit, OnDestroy {
               private location: Location) { }
 
   ngOnInit(): void {
-    this.getHero();
+    this.route.data.subscribe((data: {heroDetails: UserInterface}) => {
+      if (!isEmpty(data)) {
+        this.getHero();
+      }
+    });
 
     this.form.valueChanges
       .pipe(takeWhile(() => this.isObservablesAlive))
@@ -46,14 +50,13 @@ export class HeroDetailComponent implements OnInit, OnDestroy {
   }
 
   onUserInputChange(event: any): void {
-    this.heroName = event.target.value;
+    this.hero.title = event.target.value;
   }
 
   getHero(): void {
   this.route.data.subscribe((data: {heroDetails: UserInterface}) => {
     this.hero = data.heroDetails;
-    this.heroName = this.hero.title;
-    this.form.get('heroName').patchValue(this.heroName);
+    this.form.get('heroName').patchValue(this.hero.title);
     this.form.markAsPristine();
     this.initialFormValue = this.form.value;
   });
@@ -62,8 +65,7 @@ export class HeroDetailComponent implements OnInit, OnDestroy {
   saveUser(): void {
     this.submitted = true;
     if (this.form.valid) {
-      this.hero.title = this.heroName;
-      this.userService.changeUser(this.hero).subscribe(() => {
+      this.userService.saveUser(this.hero).subscribe(() => {
         this.location.back();
       });
     }

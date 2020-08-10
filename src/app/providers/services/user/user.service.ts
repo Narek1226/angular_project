@@ -22,12 +22,10 @@ export class UserService {
     return this.http.get<UserInterface>(`${this.API_PATH}/${this.USER_API_PATH}/${id}`);
   }
 
-  saveUser(user: UserInterface): void {
-    this.http.post(`${this.API_PATH}/${this.USER_API_PATH}`, user);
-  }
-
-  changeUser(user: UserInterface): Observable<object> {
-    return this.http.put(`${this.API_PATH}/${this.USER_API_PATH}/${user.id}`, user);
+  saveUser(user: UserInterface): Observable<object> {
+    return user.id
+      ? this.http.put(`${this.API_PATH}/${this.USER_API_PATH}/${user.id}`, user)
+      : this.http.post(`${this.API_PATH}/${this.USER_API_PATH}`, user);
   }
 
   deleteUser(id: number): Observable<object> {

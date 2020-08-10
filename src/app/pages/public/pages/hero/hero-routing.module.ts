@@ -22,7 +22,11 @@ const routes: Routes = [
     loadChildren: () => import('./pages/hero-detail/hero-detail.module').then(m => m.HeroDetailModule),
     resolve: {
       heroDetails: HeroDetailResolver
-    }
+    },
+  },
+  {
+    path: 'create',
+    loadChildren: () => import('./pages/hero-detail/hero-detail.module').then(m => m.HeroDetailModule),
   },
 ];
 
