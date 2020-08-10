@@ -54,12 +54,12 @@ export class HeroDetailComponent implements OnInit, OnDestroy {
   }
 
   getHero(): void {
-  this.route.data.subscribe((data: {heroDetails: UserInterface}) => {
-    this.hero = data.heroDetails;
-    this.form.get('heroName').patchValue(this.hero.title);
-    this.form.markAsPristine();
-    this.initialFormValue = this.form.value;
-  });
+    this.route.data.subscribe((data: {heroDetails: UserInterface}) => {
+      this.hero = data.heroDetails;
+      this.form.get('heroName').patchValue(this.hero.title);
+      this.form.markAsPristine();
+      this.initialFormValue = this.form.value;
+    });
   }
 
   saveUser(): void {
